@@ -5,8 +5,15 @@
     <p><%= @sub.description %></p>
 <% end %>
 
-<form action="<%= new_post_url %>" method="POST">
+<form action="<%= posts_url %>" method="POST">
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
     <button>Make New Post!
     </button>
 </form>
+<ul>
+    <li>
+        <% @sub.posts.each do |post| %>
+            <a href="<%= post_url(post) %>"><%= post.title  %></a>
+        <% end %>
+    </li>
+</ul>

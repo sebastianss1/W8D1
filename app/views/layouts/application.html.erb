@@ -10,17 +10,38 @@
   </head>
 
   <body>
-    <% if logged_in? %>
-      <form action="<%= session_url %>" method="POST">
-        <input type="hidden" name="_method" value="DELETE">
-          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-      <button>Sign Out</button>
+
+  <% if logged_in? %>
+      <ul>
+        <li>
+          <%= current_user.username %>
+
+          <form action="<%= new_sub_url %>" method="GET">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <button>Create a Sub!</button>
+          </form>
+
+          <form action="<%= subs_url %>" method="GET">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <button>All Subs</button>
+          </form>
+          
+          <form action="<%= session_url %>" method="POST">
+            <input type="hidden" name="_method" value="DELETE">
+              <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <button>Sign Out</button>
+          </form>
+
+      </li>
+    </ul>
     <% else %>
      <form action="<%= new_session_url %>" method="GET">
           <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
       <button>Sign In</button>
+      </form>
     <% end %>
 
+    
 
     <%= yield %>
   </body>
