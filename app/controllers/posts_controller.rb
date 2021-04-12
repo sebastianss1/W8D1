@@ -1,9 +1,9 @@
 class PostsController < ApplicationController 
-
+    before_action :check_author, only: [:edit, :update]
 
     def check_author
         @post = current_user.posts.find(params[:id])
-        render json: "Not Allowed", status: 422
+        render json: "Not Allowed", status: 422 unless @post
     end 
 
     def new
@@ -30,13 +30,14 @@ class PostsController < ApplicationController
 
     def update
         @post = Post.find(params[:id])
-        @sub.update(post_params)
+        @post.update(post_params)
 
-        if @sub.save
-            redirect_to sub_url(params[:sub_id])
+        if @post.save
+            redirect_to post_url(params[:id])
         else 
-            flash[:errors] = @sub.errors.full_messages
+            flash[:errors] = @post.errors.full_messages
             redirect_to sub_url(params[:sub_id])
+            #redirect to post show
         end 
     end 
 
@@ -46,7 +47,11 @@ class PostsController < ApplicationController
     end 
 
     def destroy
+        @post = current_user.posts.find(params[:id])
 
+        if @post && post.destroy
+            redirect_to users_url
+        end 
     end 
 
     private

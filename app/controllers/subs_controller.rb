@@ -5,7 +5,7 @@ class SubsController < ApplicationController
 
     def check_owner
         @sub = current_user.subs.find(params[:id])
-        render json: "Not Allowed", status: 422
+        render json: "Not Allowed", status: 422 unless @sub
     end 
 
     def index 
@@ -33,7 +33,7 @@ class SubsController < ApplicationController
 
     def show
         @sub = Sub.find(params[:id])
-        # LIST POSTS
+        # LIST POSTS IN SHOW VIEW
         # @sub = current_user.subs.find(params[:id])
         render :show
     end 

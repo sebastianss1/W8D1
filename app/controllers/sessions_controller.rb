@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
         @user = User.find_by_credentials(params[:user][:username], params[:user][:password])
 
         if @user 
-            redirect_to user_url(@user)
+            redirect_to subs_url
         else 
             flash[:errors] = @user.errors.full_messages
             redirect_to new_session_url
