@@ -12,6 +12,7 @@ class PostsController < ApplicationController
     end 
 
     def create
+        debugger
         @post = Post.new(post_params)
         @post.subs_id = params[:subs_id]
         @post.author_id = params[:author_id]
@@ -57,7 +58,7 @@ class PostsController < ApplicationController
     private
 
     def post_params
-        params.require(:post).permit(:title, :url, :content, :sub_id, :author_id)
+        params.require(:post).permit(:title, :url, :content, :author_id, sub_ids: [])
     end 
 
 end 

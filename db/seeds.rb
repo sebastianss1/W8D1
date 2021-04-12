@@ -16,5 +16,5 @@ user2 = User.create!(username: "daniel", password: "hello1234")
 sub1 = Sub.create!(title: "hello", description: "this is the first sub", user_id: user1.id)
 sub2 = Sub.create!(title: "hello 2", description: "this is the second sub", user_id: user2.id)
 
-post1= Post.create!(title: "this is a post", sub_id: sub1.id, author_id: sub1.user_id)
-post2= Post.create!(title: "this is another post", sub_id: sub2.id, author_id: sub2.user_id)
+post1= Post.create!(title: "this is a post", author_id: sub1.user_id)
+post2= Post.create!(title: "this is another post", author_id: sub2.user_id)

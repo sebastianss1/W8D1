@@ -5,7 +5,7 @@
     <p><%= @sub.description %></p>
 <% end %>
 
-<form action="<%= posts_url %>" method="POST">
+<form action="<%= new_post_url %>" method="GET">
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
     <button>Make New Post!
     </button>

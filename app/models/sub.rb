@@ -5,9 +5,15 @@ class Sub < ApplicationRecord
     foreign_key: :user_id,
     class_name: :User
 
-    has_many :posts,
+    has_many :post_subs,
     foreign_key: :sub_id,
-    class_name: :Post
+    class_name: :PostSub,
+    inverse_of: :sub
+
+    has_many :posts,
+    through: :post_subs,
+    source: :post
+
 
 
 
